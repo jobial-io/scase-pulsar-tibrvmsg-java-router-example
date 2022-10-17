@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutionException;
 public class RouterPulsarServer implements RouterServicePulsarConfig, RouterServiceImpl {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        var service = serviceConfig.service(messageHandler);
+        var service = serviceConfig.service(messageHandler).get();
         service.startAndJoin().get();
     }
 }

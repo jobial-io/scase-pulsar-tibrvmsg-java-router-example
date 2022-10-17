@@ -22,13 +22,13 @@ import static io.jobial.scase.pulsar.javadsl.PulsarServiceConfiguration.source;
 public class RouterPulsarClient implements RouterServicePulsarConfig {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException, TibrvException {
-        var client = serviceConfig.client();
+        var client = serviceConfig.client().get();
         var request = new TibrvMsg();
         request.add("target_topic", "mytopic");
         client.send(request).get();
 
         // Receiving the response sent out by the server:
-        source("mytopic", tibrvMarshalling).client().receive().whenComplete((response, error) ->
+        source("mytopic", tibrvMarshalling).client().get().receive().whenComplete((response, error) ->
                 System.out.println(response)
         ).get();
     }

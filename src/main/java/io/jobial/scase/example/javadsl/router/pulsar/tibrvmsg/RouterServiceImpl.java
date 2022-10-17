@@ -27,7 +27,7 @@ interface RouterServiceImpl extends RouterServicePulsarConfig {
             response.add("greeting", "hello on " + targetTopic);
             
             // Creating client for response, could be cached...
-            var client = destination(targetTopic, tibrvMarshalling).client();
+            var client = destination(targetTopic, tibrvMarshalling).client().get();
             System.out.println("sending to " + targetTopic + " message: " + response);
             client.send(response);
         } catch (Exception e) {
